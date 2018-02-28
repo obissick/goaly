@@ -17,10 +17,12 @@ class CreateGoalsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
-            $table->string('user_id')->references('id')->on('users');
-            $table->integer('goal_type_id')->references('id')->on('goal_types');
-            $table->timestamp('target_date');
-            $table->timestamp('completed_date');
+            $table->integer('user_id');
+            $table->integer('goal_type_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('goal_type_id')->references('id')->on('goal_types');
+            $table->datetime('target_date');
+            $table->datetime('completed_date');
             $table->timestamps();
         });
     }

@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class GoalController extends Controller
 {
+     
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,8 @@ class GoalController extends Controller
      */
     public function index()
     {
-        //
+        $goals = Goal::all()->paginate(50);
+        return view('goals.list')->with('goals');
     }
 
     /**
@@ -24,7 +31,7 @@ class GoalController extends Controller
      */
     public function create()
     {
-        //
+        return view('goals.create');
     }
 
     /**
@@ -35,7 +42,7 @@ class GoalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -46,7 +53,7 @@ class GoalController extends Controller
      */
     public function show(Goal $goal)
     {
-        //
+        
     }
 
     /**
