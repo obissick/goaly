@@ -8,7 +8,7 @@
                 <div class="panel-heading">New Goal</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('store') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('goal.store') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
@@ -39,6 +39,23 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                                <label for="type" class="col-md-4 control-label">Type</label>
+    
+                                <div class="col-md-6">
+                                    <select id="type" class="form-control" name="type" value="{{ old('type') }}" required>
+                                        <option value="personal">Personal</option>
+                                        <option value="work">Work</option>
+                                    </select>
+    
+                                    @if ($errors->has('type'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('type') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
                         <div class="form-group{{ $errors->has('target-date') ? ' has-error' : '' }}">
                             <label for="target-date" class="col-md-4 control-label">Target Date</label>
 
@@ -57,7 +74,7 @@
                                 <label for="private" class="col-md-4 control-label">Private</label>
     
                                 <div class="col-md-1">
-                                    <input id="private" type="checkbox" class="form-control" name="private" required>
+                                    <input id="private" type="checkbox" class="form-control" name="private">
     
                                     @if ($errors->has('private'))
                                         <span class="help-block">
@@ -65,14 +82,14 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-success">
                                     Save
                                 </button>
-                                <a href="{{route('goal')}}" class="btn btn-danger">Cancel</a>
+                                <a href="{{route('goal.index')}}" class="btn btn-danger">Cancel</a>
                             </div>
                         </div>
                     </form>

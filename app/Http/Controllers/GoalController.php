@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Goal;
 use Illuminate\Http\Request;
 
@@ -20,8 +21,8 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $goals = Goal::all()->paginate(50);
-        return view('goals.list')->with('goals');
+        $goals = Goal::where('user_id', Auth::user()->id)->paginate(30);
+        return view('goals.list', compact('goals'));
     }
 
     /**
@@ -42,7 +43,23 @@ class GoalController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $private;
+        if($request->get('private') == 'on'){
+            $private = 1;
+        }
+        else{
+            $private = 0;
+        }
+        $goal = new Goal([
+            'title' => $request->get('title'),
+            'content' => $request->get('content'),
+            'user_id' => Auth::user()->id,
+            'target_date' => $request->get('target-date'),
+            'is_private' => $private,
+          ]);
+          $goal->save();
+  
+          return redirect('goal');
     }
 
     /**
@@ -51,9 +68,11 @@ class GoalController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function show(Goal $goal)
+    public function show($id)
     {
-        
+        $goal = Goal::findOrFail($id);
+
+        return view('goals.view')->withTask($goal);
     }
 
     /**
@@ -62,9 +81,17 @@ class GoalController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function edit(Goal $goal)
+    public function edit($id)
     {
-        //
+        $goal = Goal::find($id);
+
+        if($goal->is_private == 1){
+            $goal['is_private'] = 'on'; 
+        }
+        else{
+            $goal['is_private'] = 'off';
+        }
+        return view('goals.edit', compact('goal'));
     }
 
     /**
@@ -74,9 +101,10 @@ class GoalController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Goal $goal)
+    public function update(Request $request, $id)
     {
-        //
+        Goal::find($id)->update($request->all());
+        return redirect()->route('goal.index');
     }
 
     /**
@@ -85,8 +113,9 @@ class GoalController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Goal $goal)
+    public function destroy($id)
     {
-        //
+        Goal::find($id)->delete();
+        return redirect()->route('goal.index');
     }
 }
