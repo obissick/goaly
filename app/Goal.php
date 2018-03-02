@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Goal extends Model
@@ -16,9 +17,9 @@ class Goal extends Model
         'title', 'content', 'target_date', 'is_private', 'user_id',
     ];
     
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('User', 'id');
     }
 
     public function goals(){

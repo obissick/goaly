@@ -21,7 +21,7 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $goals = Goal::where('user_id', Auth::user()->id)->paginate(30);
+        $goals = Goal::where('user_id', Auth::user()->id)->paginate(15);
         return view('goals.list', compact('goals'));
     }
 

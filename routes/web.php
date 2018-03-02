@@ -18,10 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/feed', 'FeedController@index')->name('feed');
 Route::resource('goal', 'GoalController');
-#Route::get('/goals', 'GoalController@index')->name('goal');
-
-#Route::get('/goals/create', 'GoalController@create')->name('newgoal');
-#Route::post('/goals', 'GoalController@store')->name('store');
-#Route::get('/goals/{id}/edit', 'GoalController@edit')->name('editgoal');
-#Route::get('/goals/{id}', 'GoalController@show')->name('showgoal');

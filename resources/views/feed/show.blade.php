@@ -17,8 +17,9 @@
                         <!-- Table Headings -->
                         <thead>
                             <th>Title</th>
-                            <th>Created</th>
+                            <th>Created Date</th>
                             <th>Target Date</th>
+                            <th>User</th>
                             <th>Commands</th>
                         </thead>
 
@@ -34,15 +35,24 @@
                                     <td>
                                         {{ $goal->created_at }}
                                     </td>
-                                        
+
                                     <td>
                                         {{ $goal->target_date }}
                                     </td>
 
                                     <td>
-                                        <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary">View</a>
-                                        <a href="{{route('goal.edit', $goal->id)}}" class="btn btn-warning">Edit</a>
-                                        <a href="{{route('goal.destroy', $goal->id)}}" class="btn btn-danger">Delete</a>
+                                        {{ $goal->email }}
+                                    </td>
+
+                                    <td>
+                                        @if($goal->user_id == $user)
+                                            <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary">View</a>
+                                            <a href="{{route('goal.edit', $goal->id)}}" class="btn btn-warning">Edit</a>
+                                            <a href="{{route('goal.destroy', $goal->id)}}" class="btn btn-danger">Delete</a>
+                                        @else
+                                            <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary">View</a>
+                                            <a href="{{route('goal.show', $goal->id)}}" class="btn btn-default">Follow</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
