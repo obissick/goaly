@@ -13,10 +13,11 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('root');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/feed', 'FeedController@index')->name('feed');
 Route::resource('goal', 'GoalController');
+Route::resource('comment', 'CommentController');

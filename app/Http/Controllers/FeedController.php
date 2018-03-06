@@ -24,7 +24,8 @@ class FeedController extends Controller
     {
         $user = Auth::id();
         #$goals = Goal::orderBy('created_at', 'desc')->paginate(50);
-        $goals = DB::table('goals')->join('users', 'users.id', '=', 'goals.user_id')
+        $goals = DB::table('goals')->select(DB::raw('goals.id, goals.title, goals.created_at, goals.target_date, goals.user_id, users.email'))
+            ->join('users', 'users.id', '=', 'goals.user_id')
             ->where('is_private', 0)->orderBy('goals.created_at', 'desc')->paginate(50);
         return view('feed.show', compact('goals', 'user'));
     }

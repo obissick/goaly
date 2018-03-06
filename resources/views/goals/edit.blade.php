@@ -56,7 +56,7 @@
                                 <label for="private" class="col-md-4 control-label">Private</label>
     
                                 <div class="col-md-1">
-                                    <input id="private" type="checkbox" class="form-control" name="private" value="{{ $goal->is_private }}">
+                                    <input id="private" type="checkbox" class="form-control" name="private" checked="{{ $goal->is_private }}">
     
                                     @if ($errors->has('private'))
                                         <span class="help-block">

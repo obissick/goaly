@@ -30,5 +30,9 @@ class User extends Authenticatable
 
     public function goals(){
         return $this->hasMany('Goal', 'user_id');
-      }
+    }
+
+    public function comments(){
+        return $this->hasMany('Comment', 'user_id');
+    }
 }

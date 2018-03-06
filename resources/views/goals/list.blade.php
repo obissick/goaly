@@ -3,7 +3,7 @@
 @section('content')
     <div class="container container-fluid">
         <a href="{{route('goal.create')}}" class="btn btn-primary">New Goal</a>
-        <hr>
+        <br><br>
         <!-- Current Tasks -->
         @if (count($goals) > 0)
             <div class="panel panel-default">
@@ -28,7 +28,7 @@
                                 <tr>
                                     <!-- Task Name -->
                                     <td class="table-text">
-                                        <div><a href="">{{ $goal->title }}</a></div>
+                                        <div><a href="{{route('goal.show', $goal->id)}}">{{ $goal->title }}</a></div>
                                     </td>
 
                                     <td>
@@ -40,9 +40,12 @@
                                     </td>
 
                                     <td>
-                                        <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary">View</a>
-                                        <a href="{{route('goal.edit', $goal->id)}}" class="btn btn-warning">Edit</a>
-                                        <a href="{{route('goal.destroy', $goal->id)}}" class="btn btn-danger">Delete</a>
+                                        <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-xs">View</a>
+                                        <a href="{{route('goal.edit', $goal->id)}}" class="btn btn-warning btn-xs">Edit</a>
+                                        {!! Form::open(['route' => ['goal.destroy', $goal->id], 'method' => 'delete']) !!}
+                                            {!! Form::hidden('id', $goal->id) !!}
+                                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach

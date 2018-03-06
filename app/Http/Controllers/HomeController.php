@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Goal;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $goal = DB::table('goals')
+                     ->select(DB::raw('COUNT(id) as count'))
+                     ->where('user_id', Auth::user()->id)
+                     ->get()->toArray();
+        $goal = array_column($goal, 'count');
+        
+        return view('home')
+                ->with('goal',json_encode($goal,JSON_NUMERIC_CHECK));
     }
 }

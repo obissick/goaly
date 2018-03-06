@@ -70,9 +70,9 @@ class GoalController extends Controller
      */
     public function show($id)
     {
-        $goal = Goal::findOrFail($id);
+        $goal = Goal::find($id);
 
-        return view('goals.view')->withTask($goal);
+        return view('goals.view', compact('goal'));
     }
 
     /**
@@ -116,6 +116,6 @@ class GoalController extends Controller
     public function destroy($id)
     {
         Goal::find($id)->delete();
-        return redirect()->route('goal.index');
+        return redirect()->back();
     }
 }
