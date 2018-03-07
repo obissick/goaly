@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Comment;
 use Illuminate\Http\Request;
 
@@ -41,7 +41,14 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = new Comment([
+            'content' => $request->get('content'),
+            'user_id' => Auth::user()->id,
+            'goal_id' => $request->get('goalid'),
+          ]);
+          $comment->save();
+  
+          return redirect()->back();
     }
 
     /**

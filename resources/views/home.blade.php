@@ -7,25 +7,26 @@ var config = {
 			type: 'doughnut',
 			data: {
 				datasets: [{
-					data: [
+					data: 
 						{{ $goal }},
-					],
 					backgroundColor: [
 						'#ff6384',
+						'#58D68D',
 					],
 					label: 'Dataset 1'
 				}],
 				labels: [
-					'Created Goals',
+					'Public Goals',
+					'Private Goals',
 				]
 			},
 			options: {
 				responsive: true,
 				legend: {
-					position: 'top',
+					position: 'bottom',
 				},
 				title: {
-					display: true,
+					display: false,
 					text: 'Chart.js Doughnut Chart'
 				},
 				animation: {
@@ -42,7 +43,7 @@ var config = {
 </script>
 <div class="container">
     <div class="row">
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-14">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
@@ -52,8 +53,48 @@ var config = {
                             {{ session('status') }}
                         </div>
                     @endif
-
-					<canvas id="canvas" height="280" width="600"></canvas>
+  
+					<div class="row text-center text-lg-left">
+			
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+						<canvas id="canvas" height="280" width="600"></canvas>
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					<div class="col-lg-3 col-md-4 col-xs-6">
+						
+					</div>
+					</div>
                     
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Goal;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class GoalController extends Controller
@@ -71,8 +72,12 @@ class GoalController extends Controller
     public function show($id)
     {
         $goal = Goal::find($id);
-
-        return view('goals.view', compact('goal'));
+        $comments = DB::table('comments')->select(DB::raw('comments.id, comments.content, comments.created_at, comments.user_id, users.email, goals.id'))
+            ->join('users', 'users.id', '=', 'comments.user_id')
+            ->join('goals', 'goals.id', '=', 'comments.goal_id')
+            ->where('goal_id', $goal->id)
+            ->orderBy('comments.created_at', 'desc')->paginate(50);
+        return view('goals.view', compact('goal', 'comments'));
     }
 
     /**

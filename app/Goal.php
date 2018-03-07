@@ -22,7 +22,7 @@ class Goal extends Model
         return $this->belongsTo('User', 'id');
     }
 
-    public function goals(){
-        return $this->hasMany(Comment::class);
+    public function comments(){
+        return $this->hasMany('App\Comment');
     }
 }

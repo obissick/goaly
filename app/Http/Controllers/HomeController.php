@@ -27,8 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         $goal = DB::table('goals')
-                     ->select(DB::raw('COUNT(id) as count'))
+                     ->select(DB::raw('is_private, COUNT(id) as count'))
                      ->where('user_id', Auth::user()->id)
+                     ->groupBy('is_private')
                      ->get()->toArray();
         $goal = array_column($goal, 'count');
         
