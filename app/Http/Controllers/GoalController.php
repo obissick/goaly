@@ -22,7 +22,7 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $goals = Goal::where('user_id', Auth::user()->id)->paginate(15);
+        $goals = Goal::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(25);
         return view('goals.list', compact('goals'));
     }
 
@@ -72,7 +72,7 @@ class GoalController extends Controller
     public function show($id)
     {
         $goal = Goal::find($id);
-        $comments = DB::table('comments')->select(DB::raw('comments.id, comments.content, comments.created_at, comments.user_id, users.email, goals.id'))
+        $comments = DB::table('comments')->select(DB::raw('comments.id, comments.content, comments.created_at, comments.user_id, users.email, users.username, goals.id'))
             ->join('users', 'users.id', '=', 'comments.user_id')
             ->join('goals', 'goals.id', '=', 'comments.goal_id')
             ->where('goal_id', $goal->id)

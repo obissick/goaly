@@ -16,18 +16,18 @@ var config = {
 					label: 'Dataset 1'
 				}],
 				labels: [
-					'Public Goals',
-					'Private Goals',
+					'Public',
+					'Private',
 				]
 			},
 			options: {
 				responsive: true,
 				legend: {
-					position: 'bottom',
+					position: 'top',
 				},
 				title: {
 					display: false,
-					text: 'Chart.js Doughnut Chart'
+					text: 'Goals'
 				},
 				animation: {
 					animateScale: true,
@@ -43,62 +43,29 @@ var config = {
 </script>
 <div class="container">
     <div class="row">
-        <div class="col-md-14">
+        <div class="col-md-5">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
+                <div class="panel-heading">Goals</div>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
-  
-					<div class="row text-center text-lg-left">
-			
-					<div class="col-lg-3 col-md-4 col-xs-6">
 						
-						<canvas id="canvas" height="280" width="600"></canvas>
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					<div class="col-lg-3 col-md-4 col-xs-6">
-						
-					</div>
-					</div>
+					<canvas id="canvas" height="280" width="600"></canvas>
                     
                 </div>
             </div>
-        </div>
+		</div>
+		<div class="col-md-7">
+				<div class="panel panel-default">
+					<div class="panel-heading">Goals</div>
+					<div class="panel-body">
+						
+					</div>
+				</div>
+		</div>
 	</div>
 </div>
 @endsection

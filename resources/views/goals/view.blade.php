@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container container-fluid">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -11,10 +11,12 @@
                     <br>
                     <div class="col-lg-offset-4 col-lg-4">
                         <h1>{{$goal->title}}</h1>
-                        {{$goal->content}}
-                        {{$goal->target_date}}
-                        {{$goal->created_at}}
-                        {{$goal->updated_at}}
+                        <p>
+                            {{$goal->content}}
+                            {{$goal->target_date}}
+                            {{$goal->created_at}}
+                            {{$goal->updated_at}}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -38,28 +40,30 @@
             </div>
         </div>
     </div>
-    <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Comments</div>
-                    <div class="panel-body">
-                        <table class="table table-striped">
-                            <tbody>
-                                @foreach ($comments as $comment)
-                                    <tr>
-                                        <!-- Task Name -->
-                                        <td>
+    @if (count($comments) > 0)
+        <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Comments</div>
+                        <div class="panel-body">
+                            @foreach ($comments as $comment)
+                                <div class="media">
+                                    <div class="media-left">
+                                      <a href="#">
+                                        <img class="media-object" src="..." alt="...">
+                                      </a>
+                                    </div>
+                                    <div class="media-body">
+                                      <h5 class="media-heading">{{ $comment->username}} <small><i>{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</i></small></h5>
+                                        <p>
                                             {{ $comment->content }}
-                                            {{ $comment->email}}
-                                            {{ $comment->created_at }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        </p>
+                                    </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
 </div>
 @endsection

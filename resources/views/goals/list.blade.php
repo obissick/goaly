@@ -12,7 +12,7 @@
                 </div>
                 
                 <div class="panel-body">
-                    <table class="table table-striped task-table">
+                    <table class="table table-hover table-striped task-table">
 
                         <!-- Table Headings -->
                         <thead>
@@ -40,12 +40,14 @@
                                     </td>
 
                                     <td>
-                                        <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-xs">View</a>
-                                        <a href="{{route('goal.edit', $goal->id)}}" class="btn btn-warning btn-xs">Edit</a>
-                                        {!! Form::open(['route' => ['goal.destroy', $goal->id], 'method' => 'delete']) !!}
-                                            {!! Form::hidden('id', $goal->id) !!}
-                                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
-                                        {!! Form::close() !!}
+                                        <div class="btn-group" role="group" aria-label="...">
+                                            {!! Form::open(['route' => ['goal.destroy', $goal->id], 'method' => 'delete']) !!}
+                                                <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-sm">View</a>
+                                                <a href="{{route('goal.edit', $goal->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                                                {!! Form::hidden('id', $goal->id) !!}
+                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                            {!! Form::close() !!}
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

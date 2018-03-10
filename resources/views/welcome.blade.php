@@ -83,8 +83,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="">Recent Goals</a>
-                    <a href="">Users</a>
+                    <a href="">About</a>
                     <a href="">Contact Us</a>
                     <a href="">Forge</a>
                     <a href="">GitHub</a>

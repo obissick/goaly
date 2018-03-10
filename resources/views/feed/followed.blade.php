@@ -8,7 +8,7 @@
         @if (count($goals) > 0)
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Goals 
+                    Followed Goals 
                 </div>
                 
                 <div class="panel-body">
@@ -45,26 +45,14 @@
                                     </td>
                                        
                                     <td>
-                                        @if($goal->user_id == $user)
-                                            <div class="btn-group" role="group" aria-label="...">
-                                                {!! Form::open(['route' => ['goal.destroy', $goal->id], 'method' => 'delete']) !!}
-                                                    <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-sm">View</a>
-                                                    <a href="{{route('goal.edit', $goal->id)}}" class="btn btn-warning btn-sm">Edit</a>
-                                                    {!! Form::hidden('id', $goal->id) !!}
-                                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                                                {!! Form::close() !!}
-                                            </div>
-                                        @else
-                                            <div class="btn-group" role="group" aria-label="...">
-                                                
-                                                {!! Form::open(['route' => ['followgoal', $goal->id], 'method' => 'post']) !!}
-                                                    <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-sm">View</a>
-                                                    <a href="{{route('goal.show', $goal->id)}}" class="btn btn-success btn-sm">Like</a>
-                                                    {!! Form::hidden('id', $goal->id) !!}
-                                                    {!! Form::submit('Follow', ['class' => 'btn btn-default btn-sm']) !!}
-                                                {!! Form::close() !!}
-                                            </div>
-                                        @endif
+                                        <div class="btn-group" role="group" aria-label="...">
+                                            {!! Form::open(['route' => ['unfollowgoal', $goal->id], 'method' => 'delete']) !!}
+                                                <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-sm">View</a>
+                                                <a href="{{route('goal.show', $goal->id)}}" class="btn btn-success btn-sm">Like</a>
+                                                {!! Form::hidden('id', $goal->id) !!}
+                                                {!! Form::submit('Unfollow', ['class' => 'btn btn-default btn-sm']) !!}
+                                            {!! Form::close() !!}
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

@@ -21,3 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/feed', 'FeedController@index')->name('feed');
 Route::resource('goal', 'GoalController');
 Route::resource('comment', 'CommentController');
+Route::get('/follows', 'GoalFollowController@index')->name('followedgoals');
+Route::post('goal/{id}/follow', 'GoalFollowController@store')->name('followgoal');
+Route::delete('goal/{id}/unfollow', 'GoalFollowController@destroy')->name('unfollowgoal');
