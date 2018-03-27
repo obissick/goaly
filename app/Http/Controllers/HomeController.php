@@ -32,8 +32,25 @@ class HomeController extends Controller
                      ->groupBy('is_private')
                      ->get()->toArray();
         $goal = array_column($goal, 'count');
+
+        $completed = DB::table('goals')
+                     ->select(DB::raw('Year(completed_date) as month, COUNT(id) as count'))
+                     ->where([['user_id', '=', Auth::user()->id],['completed_date', '<>','', 'and']])
+                     ->groupBy('month')
+                     ->orderBy('month')
+                     ->get()->toArray();
+        #$completed = array_column($completed, 'month');
+
+        $created = DB::table('goals')
+                     ->select(DB::raw('Year(created_at) as month, COUNT(id) as count'))
+                     ->where('user_id', Auth::user()->id)
+                     ->groupBy('month')
+                     ->orderBy('month')
+                     ->get()->toArray();
         
         return view('home')
-                ->with('goal',json_encode($goal,JSON_NUMERIC_CHECK));
+                ->with('goal',json_encode($goal,JSON_NUMERIC_CHECK))
+                ->with('completed',json_encode($completed,JSON_NUMERIC_CHECK))
+                ->with('created',json_encode($created,JSON_NUMERIC_CHECK));
     }
 }

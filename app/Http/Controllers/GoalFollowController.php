@@ -18,11 +18,12 @@ class GoalFollowController extends Controller
     public function index()
     {
         $user = Auth::id();
-        #$goals = Goal::orderBy('created_at', 'desc')->paginate(50);
+        
         $goals = DB::table('goals')->select(DB::raw('goals.id, goals.title, goals.created_at, goals.target_date, goals.user_id, users.username'))
             ->join('users', 'users.id', '=', 'goals.user_id')
             ->join('goal_followers', 'goal_followers.goal_id', '=', 'goals.id')
             ->where('goal_followers.user_id', $user)->orderBy('goals.created_at', 'desc')->orderBy('goals.id', 'desc')->paginate(50);
+        
         return view('feed.followed', compact('goals', 'user'));
     }
     public function store(Request $request)

@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/feed', 'FeedController@index')->name('feed');
 Route::resource('goal', 'GoalController');
+Route::post('goal/{id}/complete', 'GoalController@complete')->name('goal.complete');
+Route::post('goal/{id}/reopen', 'GoalController@reopen')->name('goal.reopen');
 Route::resource('comment', 'CommentController');
 Route::get('/follows', 'GoalFollowController@index')->name('followedgoals');
 Route::post('goal/{id}/follow', 'GoalFollowController@store')->name('followgoal');

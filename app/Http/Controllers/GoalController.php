@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Goal;
+use URL;
+use Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -110,6 +112,22 @@ class GoalController extends Controller
     {
         Goal::find($id)->update($request->all());
         return redirect()->route('goal.index');
+    }
+
+    public function complete($id)
+    {
+        $goal = Goal::find($id);
+        $goal->completed_date = Carbon\Carbon::now();
+        $goal->save();
+        return redirect()->route('goal.show', ['id' => $id]);
+    }
+
+    public function reopen($id)
+    {
+        $goal = Goal::find($id);
+        $goal->completed_date = NULL;
+        $goal->save();
+        return redirect()->route('goal.show', ['id' => $id]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 class GoalTableSeeder extends Seeder
 {
     /**
@@ -9,12 +10,10 @@ class GoalTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        foreach(range(1, 50) as $index)
-        {
+    public function run(){
+        $faker = Faker::create('en_US');
 
-
+        foreach(range(1, 50) as $index){
             $start_date = '2018-04-31 00:00:00';
             $end_date = '2018-12-31 00:00:00';
 
@@ -30,8 +29,8 @@ class GoalTableSeeder extends Seeder
             $end = $start->modify('+' . $weeks . ' weeks');
 
             DB::table('goals')->insert([
-                'title' => str_random(10),
-                'content' => str_random(1000),
+                'title' => $faker->word,
+                'content' => $faker->paragraph,
                 'target_date' => $start,
                 'is_private' => 0,
                 'user_id' => $user,

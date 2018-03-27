@@ -7,7 +7,25 @@
             <div class="panel panel-default">
                 <div class="panel-heading">View Goal</div>
                 <div class="panel-body">
-                        <a href="{{ URL::previous() }}" class="btn btn-primary">Back</a>
+                    <div class="btn-group" role="group" aria-label="...">
+                        @if ($goal->user_id == Auth::user()->id)
+                            @if ($goal->completed_date)
+                                {!! Form::open(['route' => ['goal.reopen', $goal->id], 'method' => 'post']) !!}
+                                    <a href="{{ URL::previous() }}" class="btn btn-primary">Back</a>
+                                    {!! Form::hidden('id', $goal->id) !!}
+                                    {!! Form::submit('Re-Open', ['class' => 'btn btn-success']) !!}
+                                {!! Form::close() !!}
+                            @else
+                                {!! Form::open(['route' => ['goal.complete', $goal->id], 'method' => 'post']) !!}
+                                    <a href="{{ URL::previous() }}" class="btn btn-primary">Back</a>
+                                    {!! Form::hidden('id', $goal->id) !!}
+                                    {!! Form::submit('Complete', ['class' => 'btn btn-success']) !!}
+                                {!! Form::close() !!}
+                            @endif
+                        @else
+                            <a href="{{ URL::previous() }}" class="btn btn-primary">Back</a>
+                        @endif
+                    </div>
                     <br>
                     <div class="col-lg-offset-4 col-lg-4">
                         <h1>{{$goal->title}}</h1>

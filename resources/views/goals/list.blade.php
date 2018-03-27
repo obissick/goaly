@@ -12,7 +12,7 @@
                 </div>
                 
                 <div class="panel-body">
-                    <table class="table table-hover table-striped task-table">
+                    <table class="table table-striped task-table">
 
                         <!-- Table Headings -->
                         <thead>
@@ -25,7 +25,11 @@
                         <!-- Table Body -->
                         <tbody>
                             @foreach ($goals as $goal)
-                                <tr>
+                                @if ($goal->completed_date)
+                                    <tr class="table-success">
+                                @else
+                                    <tr>
+                                @endif
                                     <!-- Task Name -->
                                     <td class="table-text">
                                         <div><a href="{{route('goal.show', $goal->id)}}">{{ $goal->title }}</a></div>
