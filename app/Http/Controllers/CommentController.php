@@ -46,9 +46,9 @@ class CommentController extends Controller
             'user_id' => Auth::user()->id,
             'goal_id' => $request->get('goalid'),
           ]);
-          $comment->save();
-  
-          return redirect()->back();
+        $comment->save();
+        
+        return redirect()->back();
     }
 
     /**

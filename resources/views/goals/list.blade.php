@@ -4,6 +4,7 @@
     <div class="container container-fluid">
         <a href="{{route('goal.create')}}" class="btn btn-primary">New Goal</a>
         <br><br>
+        @include('partials.flash')
         <!-- Current Tasks -->
         @if (count($goals) > 0)
             <div class="panel panel-default">

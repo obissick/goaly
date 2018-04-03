@@ -59,10 +59,11 @@ class GoalController extends Controller
             'user_id' => Auth::user()->id,
             'target_date' => $request->get('target-date'),
             'is_private' => $private,
-          ]);
-          $goal->save();
-  
-          return redirect('goal');
+        ]);
+        $goal->save();
+        session()->flash('flash_message', 'Goal created.');
+        
+        return redirect('goal');
     }
 
     /**
@@ -139,6 +140,7 @@ class GoalController extends Controller
     public function destroy($id)
     {
         Goal::find($id)->delete();
+        session()->flash('flash_message', 'Goal Deleted.');
         return redirect()->back();
     }
 }

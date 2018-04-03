@@ -33,7 +33,7 @@ class GoalFollowController extends Controller
             'goal_id' => $request->get('id'),
           ]);
         $goalfollow->save();
-  
+        session()->flash('flash_message', 'Goal followed.');
         return redirect()->back();
     }
 
@@ -43,6 +43,7 @@ class GoalFollowController extends Controller
             'user_id' => Auth::user()->id,
             'goal_id' => $request->get('id'),
           ])->delete();
+          session()->flash('flash_message', 'Goal unfollowed.');
         return redirect()->back();
     }
 }

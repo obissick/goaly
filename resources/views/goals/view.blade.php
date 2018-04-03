@@ -27,14 +27,25 @@
                         @endif
                     </div>
                     <br>
-                    <div class="col-lg-offset-4 col-lg-4">
-                        <h1>{{$goal->title}}</h1>
-                        <p>
+                    <div class="">
+                        <div>
+                            <h1>{{$goal->title}}</h1>
+                        </div>
+                        <div>
+                            <strong>User: </strong>{{$goal->username}}
+                        </div>
+                        <div>
+                            <strong>Created: </strong>{{$goal->created_at}}
+                        </div>
+                        <div>
+                            <strong>Target Date: </strong>{{$goal->target_date}}
+                        </div>
+                        <div>    
+                            <strong>Updated: </strong>{{$goal->updated_at}}
+                        </div>
+                        <div>
                             {{$goal->content}}
-                            {{$goal->target_date}}
-                            {{$goal->created_at}}
-                            {{$goal->updated_at}}
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -68,7 +79,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                       <a href="#">
-                                        <img class="media-object" src="..." alt="...">
+                                        <!--<img class="media-object" src="..." alt="...">-->
                                       </a>
                                     </div>
                                     <div class="media-body">

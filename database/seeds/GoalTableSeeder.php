@@ -13,7 +13,7 @@ class GoalTableSeeder extends Seeder
     public function run(){
         $faker = Faker::create('en_US');
 
-        foreach(range(1, 50) as $index){
+        foreach(range(1, 100000) as $index){
             $start_date = '2018-04-31 00:00:00';
             $end_date = '2018-12-31 00:00:00';
 

@@ -4,6 +4,7 @@
     <div class="container container-fluid">
         <a href="{{route('goal.create')}}" class="btn btn-primary">New Goal</a>
         <br><br>
+        @include('partials.flash')
         <!-- Current Tasks -->
         @if (count($goals) > 0)
             <div class="panel panel-default">
@@ -56,10 +57,12 @@
                                             </div>
                                         @else
                                             <div class="btn-group" role="group" aria-label="...">
-                                                
-                                                {!! Form::open(['route' => ['followgoal', $goal->id], 'method' => 'post']) !!}
+                                                {!! Form::open(['route' => ['goal.like', $goal->id], 'method' => 'post']) !!}
                                                     <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-sm">View</a>
-                                                    <a href="{{route('goal.show', $goal->id)}}" class="btn btn-success btn-sm">Like</a>
+                                                    {!! Form::hidden('id', $goal->id) !!}
+                                                    {!! Form::submit('Like', ['class' => 'btn btn-success btn-sm']) !!}
+                                                {!! Form::close() !!}
+                                                {!! Form::open(['route' => ['followgoal', $goal->id], 'method' => 'post']) !!}
                                                     {!! Form::hidden('id', $goal->id) !!}
                                                     {!! Form::submit('Follow', ['class' => 'btn btn-default btn-sm']) !!}
                                                 {!! Form::close() !!}
