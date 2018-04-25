@@ -74,8 +74,10 @@ class GoalController extends Controller
      */
     public function show($id)
     {
-        $goal = Goal::find($id);
-        $comments = DB::table('comments')->select(DB::raw('comments.id, comments.content, comments.created_at, comments.user_id, users.email, users.username, goals.id'))
+        $goal = DB::table('goals')->select(DB::raw('users.username, goals.id, goals.title, goals.content, goals.user_id, goals.target_date, goals.completed_date, goals.goal_type_id, goals.created_at, goals.updated_at, goals.is_private'))
+            ->join('users', 'users.id', '=', 'goals.user_id')
+            ->where('goals.id', $id)->first();
+        $comments = DB::table('comments')->select(DB::raw('comments.id, comments.content, comments.created_at, comments.user_id, users.email, users.username'))
             ->join('users', 'users.id', '=', 'comments.user_id')
             ->join('goals', 'goals.id', '=', 'comments.goal_id')
             ->where('goal_id', $goal->id)

@@ -57,12 +57,12 @@
                                             </div>
                                         @else
                                             <div class="btn-group" role="group" aria-label="...">
-                                                {!! Form::open(['route' => ['goal.like', $goal->id], 'method' => 'post']) !!}
+                                                {!! Form::open(['class' => 'form-inline','route' => ['goal.like', $goal->id], 'method' => 'post']) !!}
                                                     <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-sm">View</a>
                                                     {!! Form::hidden('id', $goal->id) !!}
                                                     {!! Form::submit('Like', ['class' => 'btn btn-success btn-sm']) !!}
                                                 {!! Form::close() !!}
-                                                {!! Form::open(['route' => ['followgoal', $goal->id], 'method' => 'post']) !!}
+                                                {!! Form::open(['class' => 'form-inline','route' => ['followgoal', $goal->id], 'method' => 'post']) !!}
                                                     {!! Form::hidden('id', $goal->id) !!}
                                                     {!! Form::submit('Follow', ['class' => 'btn btn-default btn-sm']) !!}
                                                 {!! Form::close() !!}

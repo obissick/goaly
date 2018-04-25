@@ -25,7 +25,7 @@ class FeedController extends Controller
     {
         $user = Auth::id();
         $followedGoals = GoalFollower::where('user_id', $user);
-        $goals = DB::table('goals')->select(DB::raw('goals.id, goals.title, goals.created_at, goals.target_date, goals.user_id, users.username'))
+        $goals = DB::table('goals')->select(DB::raw('goals.id, goals.title, goals.content, goals.created_at, goals.target_date, goals.user_id, users.username'))
             ->join('users', 'users.id', '=', 'goals.user_id')
             ->where('is_private', 0)->orderBy('goals.created_at', 'desc')->orderBy('goals.id', 'desc')->paginate(50);
         return view('feed.show', compact('goals', 'user', 'followedGoals'));

@@ -9,7 +9,7 @@
 	});
 	var completed = {!! $completed !!}.map(function(e) {
    		return e.count;
-	});;
+	});
 
 	var complabels =  {!! $created !!}.map(function(e) {
    		return e.month;
@@ -17,15 +17,15 @@
 
 	var created = {!! $created !!}.map(function(e) {
    		return e.count;
-	});;
+	});
 
 	var liked = {!! $liked !!}.map(function(e) {
    		return e.liked;
-	});;
+	});
 
 	var followed = {!! $followed !!}.map(function(e) {
    		return e.followed;
-	});;
+	});
 
 	var config = {
 		type: 'doughnut',
@@ -66,7 +66,7 @@
 		labels: ["Created", "Completed"],
 		datasets: [{
 			label: "",
-			backgroundColor: ["#3cba9f", "#3e95cd"],
+			backgroundColor: ["#FFEA88", "#4ACAB4"],
 			data: [created,completed]
 		}]
 		},
@@ -77,46 +77,31 @@
 			}
 		}
 	};
-
+	
 	var likes_follows = {
 		type: 'bar',
 		data: {
-			datasets: [{
-				data: 
-					[liked, followed],
-				backgroundColor: [
-					'#ff6384',
-					'#58D68D',
-				]
-			}],
-			labels: [
-				'Liked',
-				'Followed',
+			labels: ['Liked/Followed'],
+			datasets: [
+			{
+				label: 'Liked',
+				data: [liked],
+				backgroundColor: '#D6E9C6',
+			},
+			{
+				label: 'Followed',
+				data: [followed],
+				backgroundColor: '#FAEBCC',
+			}
 			]
 		},
 		options: {
-			responsive: true,
-			legend: {
-				position: 'top',
-			},
-			title: {
-				display: false,
-				text: 'Goals'
-			},
-			animation: {
-				animateScale: true,
-				animateRotate: true
-			},
 			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero:true,
-						stepSize: 5
-					}
-				}]
-        	}
+			xAxes: [{ stacked: true }],
+			yAxes: [{ stacked: true }]
+			}
 		}
-	};
+		};
 
 	window.onload = function() {
 		var ctx = document.getElementById('dough').getContext('2d');
@@ -124,12 +109,12 @@
 		var etx = document.getElementById('bar').getContext('2d');
 		window.myDoughnut = new Chart(ctx, config);
 		window.bar = new Chart(dtx, bar);
-		window.liked = new Chart(etx, likes_follows);
+		window.likefollow = new Chart(etx, likes_follows);
 	};
 </script>
-<div class="container">
+<div class="container container-fluid">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <!--<div class="panel-heading">Goals</div>-->
                 <div class="panel-body">
@@ -143,7 +128,7 @@
                 </div>
             </div>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-6">
 			<div class="panel panel-default">
 				<!--<div class="panel-heading">Goals</div>-->
 				<div class="panel-body">
@@ -153,7 +138,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-6">
 			<div class="panel panel-default">
 				<!--<div class="panel-heading">Goals</div>-->
 				<div class="panel-body">

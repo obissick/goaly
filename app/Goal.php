@@ -19,7 +19,7 @@ class Goal extends Model
     
     public function users()
     {
-        return $this->belongsTo('User', 'id');
+        return $this->belongsTo('App\User', 'id');
     }
 
     public function comments(){
