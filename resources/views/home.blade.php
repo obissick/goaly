@@ -154,17 +154,19 @@
 
                         <!-- Table Body -->
                         <tbody>
-							@foreach ($goals as $goal)
-                                <tr>
-                                    <!-- Task Name -->
-                                    <td class="table-text">
-                                        <div><a href="{{route('goal.show', $goal->id)}}">{{ $goal->title }}</a></div>
-									</td>
-									<td>
+							@if ($goals > 0)
+								@foreach ($goals as $goal)
+									<tr>
+										<!-- Task Name -->
+										<td class="table-text">
+											<div><a href="{{route('goal.show', $goal->id)}}">{{ $goal->title }}</a></div>
+										</td>
+										<td>
 
-									</td>
-                                </tr>
-                            @endforeach
+										</td>
+									</tr>
+								@endforeach
+							@endif
                         </tbody>
                     </table>
 				</div>
