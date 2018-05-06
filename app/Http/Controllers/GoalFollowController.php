@@ -26,6 +26,7 @@ class GoalFollowController extends Controller
         
         return view('feed.followed', compact('goals', 'user'));
     }
+    
     public function store(Request $request)
     {
         $goalfollow = new GoalFollower([

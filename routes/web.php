@@ -26,6 +26,7 @@ Route::resource('comment', 'CommentController');
 Route::get('/follows', 'GoalFollowController@index')->name('followedgoals');
 Route::post('goal/{id}/follow', 'GoalFollowController@store')->name('followgoal');
 Route::delete('goal/{id}/unfollow', 'GoalFollowController@destroy')->name('unfollowgoal');
+Route::get('/likes', 'GoalLikeController@index')->name('likedgoals');
 Route::post('goal/{id}/like', 'GoalLikeController@store')->name('goal.like');
 Route::delete('goal/{id}/unlike', 'GoalLikeController@destroy')->name('goal.unlike');
 

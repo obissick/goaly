@@ -15,6 +15,18 @@ class GoalLikeController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $user = Auth::id();
+        
+        $goals = DB::table('goals')->select(DB::raw('goals.id, goals.title, goals.created_at, goals.target_date, goals.user_id, users.username'))
+            ->join('users', 'users.id', '=', 'goals.user_id')
+            ->join('goal_likes', 'goal_likes.goal_id', '=', 'goals.id')
+            ->where('goal_likes.user_id', $user)->orderBy('goals.created_at', 'desc')->orderBy('goals.id', 'desc')->paginate(50);
+        
+        return view('feed.liked', compact('goals', 'user'));
+    }
+
     public function store(Request $request)
     {
         $goal_like = new GoalLike([

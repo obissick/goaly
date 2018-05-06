@@ -49,6 +49,7 @@
                             <li><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('feed') }}">Feed</a></li>
                             <li><a href="{{ route('goal.index') }}">My Goals</a></li>
+                            <li><a href="{{ route('likedgoals') }}">Liked Goals</a></li>
                             <li><a href="{{ route('followedgoals') }}">Followed Goals</a></li>
                         @endguest
                     </ul>

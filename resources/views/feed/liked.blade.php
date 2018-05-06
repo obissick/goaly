@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'My Goals')
+@section('title', 'Liked Goals')
 @section('content')
     <div class="container container-fluid">
         <a href="{{route('goal.create')}}" class="btn btn-primary">New Goal</a>
@@ -9,7 +9,7 @@
         @if (count($goals) > 0)
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Followed Goals 
+                    Liked Goals 
                 </div>
                 
                 <div class="panel-body">
@@ -47,10 +47,10 @@
                                        
                                     <td>
                                         <div class="btn-group" role="group" aria-label="...">
-                                            {!! Form::open(['route' => ['unfollowgoal', $goal->id], 'method' => 'delete']) !!}
+                                            {!! Form::open(['route' => ['goal.unlike', $goal->id], 'method' => 'delete']) !!}
                                                 <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-sm">View</a>
                                                 {!! Form::hidden('id', $goal->id) !!}
-                                                {!! Form::submit('Unfollow', ['class' => 'btn btn-default btn-sm']) !!}
+                                                {!! Form::submit('Unlike', ['class' => 'btn btn-default btn-sm']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                     </td>

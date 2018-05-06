@@ -143,7 +143,6 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Most Liked</div>
 				<div class="panel-body">
-					{{$goals}}
 					<table class="table table-striped task-table">
 						
                         <!-- Table Headings -->
@@ -154,19 +153,19 @@
 
                         <!-- Table Body -->
                         <tbody>
-							@if ($goals > 0)
-								@foreach ($goals as $goal)
-									<tr>
-										<!-- Task Name -->
-										<td class="table-text">
-											<div><a href="{{route('goal.show', $goal->id)}}">{{ $goal->title }}</a></div>
-										</td>
-										<td>
-
-										</td>
-									</tr>
-								@endforeach
-							@endif
+							
+							@foreach ($goals as $goal)
+								<tr>
+									<!-- Task Name -->
+									<td class="table-text">
+										<div><a href="{{route('goal.show', $goal->goal_id)}}">{{ $goal->title }}</a></div>
+									</td>
+									<td>
+										{{$goal->likes}}
+									</td>
+								</tr>
+							@endforeach
+							
                         </tbody>
                     </table>
 				</div>
