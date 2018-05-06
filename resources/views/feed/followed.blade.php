@@ -49,7 +49,7 @@
                                         <div class="btn-group" role="group" aria-label="...">
                                             {!! Form::open(['route' => ['unfollowgoal', $goal->id], 'method' => 'delete']) !!}
                                                 <a href="{{route('goal.show', $goal->id)}}" class="btn btn-primary btn-sm">View</a>
-                                                <a href="{{route('goal.show', $goal->id)}}" class="btn btn-success btn-sm">Like</a>
+                                                <a href="{{route('goal.like', $goal->id)}}" class="btn btn-success btn-sm">Like</a>
                                                 {!! Form::hidden('id', $goal->id) !!}
                                                 {!! Form::submit('Unfollow', ['class' => 'btn btn-default btn-sm']) !!}
                                             {!! Form::close() !!}
