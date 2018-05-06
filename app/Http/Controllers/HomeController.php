@@ -58,11 +58,16 @@ class HomeController extends Controller
                     ->where('user_id', Auth::user()->id)
                     ->get()->toArray();
 
+        $goals = DB::table('goals')->select(DB::raw('goals.title, goal_id, COUNT(goal_id) AS likes'))
+        ->join('goal_likes', 'goal_likes.goal_id', '=', 'goals.id')
+        ->where('goals.user_id', Auth::user()->id)->groupBy('goal_likes.goal_id')->orderBy('likes', 'desc')->limit(5)->get();
+
         return view('home')
                 ->with('goal',json_encode($goal,JSON_NUMERIC_CHECK))
                 ->with('completed',json_encode($completed,JSON_NUMERIC_CHECK))
                 ->with('created',json_encode($created,JSON_NUMERIC_CHECK))
                 ->with('liked',json_encode($liked,JSON_NUMERIC_CHECK))
-                ->with('followed',json_encode($followed,JSON_NUMERIC_CHECK));
+                ->with('followed',json_encode($followed,JSON_NUMERIC_CHECK))
+                ->with('goals');
     }
 }

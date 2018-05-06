@@ -79,26 +79,19 @@
 	};
 	
 	var likes_follows = {
-		type: 'bar',
+		type: 'pie',
 		data: {
-			labels: ['Liked/Followed'],
-			datasets: [
-			{
-				label: 'Liked',
-				data: [liked],
-				backgroundColor: '#D6E9C6',
-			},
-			{
-				label: 'Followed',
-				data: [followed],
-				backgroundColor: '#FAEBCC',
-			}
-			]
+		labels: ["Liked", "Followed"],
+		datasets: [{
+			label: "",
+			backgroundColor: ["#01FC04", "#FC01F9"],
+			data: [liked,followed]
+		}]
 		},
 		options: {
-			scales: {
-			xAxes: [{ stacked: true }],
-			yAxes: [{ stacked: true }]
+			title: {
+			display: false,
+			text: ''
 			}
 		}
 		};
@@ -143,6 +136,37 @@
 				<!--<div class="panel-heading">Goals</div>-->
 				<div class="panel-body">
 					<canvas id="bar" height="280" width="600"></canvas>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">Most Liked</div>
+				<div class="panel-body">
+					{{$goals}}
+					<table class="table table-striped task-table">
+						
+                        <!-- Table Headings -->
+                        <thead>
+                            <th>Title</th>
+                            <th>Likes</th>
+                        </thead>
+
+                        <!-- Table Body -->
+                        <tbody>
+							@foreach ($goals as $goal)
+                                <tr>
+                                    <!-- Task Name -->
+                                    <td class="table-text">
+                                        <div><a href="{{route('goal.show', $goal->id)}}">{{ $goal->title }}</a></div>
+									</td>
+									<td>
+
+									</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 				</div>
 			</div>
 		</div>
