@@ -85,8 +85,7 @@
                 <div class="links">
                     <a href="">About</a>
                     <a href="">Contact Us</a>
-                    <a href="">Forge</a>
-                    <a href="">GitHub</a>
+                    <a href="https://github.com/obissick/goaly">GitHub</a>
                 </div>
             </div>
         </div>

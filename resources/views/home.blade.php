@@ -141,7 +141,7 @@
 		</div>
 		<div class="col-md-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">Most Liked</div>
+				<div class="panel-heading">Top 10 Most Liked</div>
 				<div class="panel-body">
 					<table class="table table-striped task-table">
 						
@@ -171,6 +171,40 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Top 10 Most Followed</div>
+					<div class="panel-body">
+						<table class="table table-striped task-table">
+							
+							<!-- Table Headings -->
+							<thead>
+								<th>Title</th>
+								<th>Follows</th>
+							</thead>
+	
+							<!-- Table Body -->
+							<tbody>
+								
+								@foreach ($follows as $follow)
+									<tr>
+										<!-- Task Name -->
+										<td class="table-text">
+											<div><a href="{{route('goal.show', $follow->goal_id)}}">{{ $follow->title }}</a></div>
+										</td>
+										<td>
+											{{$follow->follows}}
+										</td>
+									</tr>
+								@endforeach
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 	</div>
 </div>
 @endsection
