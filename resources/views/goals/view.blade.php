@@ -88,7 +88,7 @@
                                     <div class="media-body">
                                       <h5 class="media-heading">{{ $comment->username}} <small><i>{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</i></small></h5>
                                       
-                                      @if ($comment->user_id == Auth::user()->id)
+                                        @if ($comment->user_id == Auth::user()->id)
                                             
                                             {!! Form::open(['class' => 'form-inline', 'route' => ['comment.destroy', $comment->id], 'method' => 'delete']) !!}
                                             
@@ -97,8 +97,10 @@
                                                 {!! Form::hidden('id', $comment->id) !!}
                                                 {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
                                             {!! Form::close() !!}
-                                            
-                                        @endif
+                                        
+                                       @else
+                                            {{ $comment->content }}
+                                       @endif
                                         
                                         
                                     </div>
